@@ -1,0 +1,59 @@
+{
+  "description": "HMAC-keyed metadata TLV checksums (signing path + session-info path)",
+  "cases": [
+    {
+      "name": "signing_path_typical",
+      "sessionKeyHex": "00112233445566778899aabbccddeeff",
+      "label": "authenticated command",
+      "items": [
+        {
+          "tag": "0",
+          "valueHex": "05"
+        },
+        {
+          "tag": "1",
+          "valueHex": "02"
+        },
+        {
+          "tag": "2",
+          "valueHex": "35594a3345314541344a46303030303031"
+        },
+        {
+          "tag": "3",
+          "valueHex": "0123456789abcdef0123456789abcdef"
+        },
+        {
+          "tag": "4",
+          "valueHex": "0000000a"
+        },
+        {
+          "tag": "5",
+          "valueHex": "00000001"
+        }
+      ],
+      "messageHex": "",
+      "expectedChecksumHex": "9918669cf0f65495aef56d89288f882b8be086a21d612cd090c61b247823fb48"
+    },
+    {
+      "name": "session_info_path_typical",
+      "sessionKeyHex": "00112233445566778899aabbccddeeff",
+      "label": "session info",
+      "items": [
+        {
+          "tag": "0",
+          "valueHex": "06"
+        },
+        {
+          "tag": "2",
+          "valueHex": "35594a3345314541344a46303030303031"
+        },
+        {
+          "tag": "6",
+          "valueHex": "deadbeef"
+        }
+      ],
+      "messageHex": "aabbcc",
+      "expectedChecksumHex": "5fa9b617ff70a59f5e9873bdfbbc8f93584c53d615f5704834dc579c9f69a04d"
+    }
+  ]
+}

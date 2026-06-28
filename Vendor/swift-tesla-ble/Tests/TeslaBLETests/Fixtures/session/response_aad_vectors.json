@@ -1,0 +1,35 @@
+{
+  "description": "Response-path AAD (SHA256 checksum over TLV metadata) per peer.responseMetadata",
+  "cases": [
+    {
+      "name": "vcsec_response_counter1",
+      "fromDomain": 2,
+      "verifierNameHex": "746573745f7665726966696572",
+      "requestIdHex": "05000102030405060708090a0b0c0d0e0f",
+      "counter": 1,
+      "flags": 0,
+      "faultCode": 0,
+      "expectedAadHex": "dfce2951dcaf4ac5ae0ac9ab67dceb204ee4320d877ac3fe164876dbd1de3c54"
+    },
+    {
+      "name": "infotainment_response_with_fault",
+      "fromDomain": 3,
+      "verifierNameHex": "35594a3345314541344a46303030303031",
+      "requestIdHex": "05ffeeddccbbaa99887766554433221100",
+      "counter": 42,
+      "flags": 2,
+      "faultCode": 5,
+      "expectedAadHex": "983c2a37ff479d0c8361ce4bbec131e89c967e390998ca9de8877b622de33c33"
+    },
+    {
+      "name": "vcsec_response_with_flags",
+      "fromDomain": 2,
+      "verifierNameHex": "746573745f7665726966696572",
+      "requestIdHex": "08aabbccddeeff11223344556677889900",
+      "counter": 7,
+      "flags": 1,
+      "faultCode": 0,
+      "expectedAadHex": "0c34f72caa04dfba3794b1e6c713303fd3c71a796af45dc540fcad2bceb761ea"
+    }
+  ]
+}

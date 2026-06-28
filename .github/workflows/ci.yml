@@ -1,0 +1,52 @@
+name: CI
+
+# Our "build VM with Xcode + the iOS SDK + Swift 6.2". This Mac only has the
+# Command Line Tools (Swift 6.0), so compilation is validated here instead.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  package:
+    name: Build & test forked TeslaBLE package
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      - name: Swift version
+        run: swift --version
+      - name: Build package (validates openDriverDoor + BackgroundBLETransport)
+        working-directory: Vendor/swift-tesla-ble
+        run: swift build
+      - name: Test package
+        working-directory: Vendor/swift-tesla-ble
+        run: swift test
+
+  app:
+    name: Compile iOS app
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      - name: Install XcodeGen
+        run: brew install xcodegen
+      - name: Generate project
+        run: xcodegen generate
+      - name: Build for iOS Simulator (no signing)
+        run: |
+          xcodebuild build \
+            -project TeslaWalkUp.xcodeproj \
+            -scheme TeslaWalkUp \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO | xcpretty || xcodebuild build \
+            -project TeslaWalkUp.xcodeproj \
+            -scheme TeslaWalkUp \
+            -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' \
+            CODE_SIGNING_ALLOWED=NO

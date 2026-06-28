@@ -1,0 +1,89 @@
+{
+  "description": "Metadata TLV → SHA256 Checksum fixtures. Primary case is from internal/authentication/metadata_test.go TestCheckSum. Tags encoded as decimal raw values from Signatures_Tag enum.",
+  "cases": [
+    {
+      "name": "testCheckSum_from_go",
+      "hashType": "sha256",
+      "items": [
+        {
+          "tag": 0,
+          "valueHex": "05"
+        },
+        {
+          "tag": 1,
+          "valueHex": "02"
+        },
+        {
+          "tag": 2,
+          "valueHex": "7465737456494e"
+        },
+        {
+          "tag": 3,
+          "valueHex": "aada928a4f215f55f9e6e45e66b6521e"
+        },
+        {
+          "tag": 4,
+          "valueHex": "00000e74"
+        },
+        {
+          "tag": 5,
+          "valueHex": "0000053a"
+        }
+      ],
+      "messageHex": "",
+      "expectedChecksumHex": "abab04d804499813382efd74a06791ce2de777439603246dfbaa8392ca05868e"
+    },
+    {
+      "name": "single_tag_empty_message",
+      "hashType": "sha256",
+      "items": [
+        {
+          "tag": 1,
+          "valueHex": "02"
+        }
+      ],
+      "messageHex": "",
+      "expectedChecksumHex": "98943a37fab08b40eef05a4fe6d3881704fc34d56008918bafde29c9e7cb6fde"
+    },
+    {
+      "name": "single_tag_with_message_body",
+      "hashType": "sha256",
+      "items": [
+        {
+          "tag": 1,
+          "valueHex": "02"
+        }
+      ],
+      "messageHex": "deadbeef",
+      "expectedChecksumHex": "471bc69a68ed59769d30979ea51c2d2ada9787a5030ac2b2ce804d486bb35504"
+    },
+    {
+      "name": "two_tags_ascending",
+      "hashType": "sha256",
+      "items": [
+        {
+          "tag": 0,
+          "valueHex": "05"
+        },
+        {
+          "tag": 1,
+          "valueHex": "02"
+        }
+      ],
+      "messageHex": "",
+      "expectedChecksumHex": "3fbfad18a6a943e7a9d11d0ce86ed3008fd5f1010495b777cb5f6659bc2e2dd4"
+    },
+    {
+      "name": "max_length_value",
+      "hashType": "sha256",
+      "items": [
+        {
+          "tag": 2,
+          "valueHex": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff"
+        }
+      ],
+      "messageHex": "",
+      "expectedChecksumHex": "8fe441c88de223d4b129343cc64333003989e47e204e7a2bda95e37c8a49042a"
+    }
+  ]
+}

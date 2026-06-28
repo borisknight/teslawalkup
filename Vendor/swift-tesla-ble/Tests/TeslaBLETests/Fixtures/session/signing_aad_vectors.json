@@ -1,0 +1,35 @@
+{
+  "description": "Signing-path AAD (SHA256 checksum over TLV metadata) per peer.extractMetadata",
+  "cases": [
+    {
+      "name": "vcsec_counter1_no_flags",
+      "domain": 2,
+      "verifierNameHex": "746573745f7665726966696572",
+      "epochHex": "0123456789abcdef0123456789abcdef",
+      "expiresAt": 60,
+      "counter": 1,
+      "flags": 0,
+      "expectedAadHex": "13cb6ae320a9632b51c28259cacc74b212f229606be46d4d1c1c94d715df8cd8"
+    },
+    {
+      "name": "infotainment_counter100_with_flags",
+      "domain": 3,
+      "verifierNameHex": "35594a3345314541344a46303030303031",
+      "epochHex": "aabbccddeeff00112233445566778899",
+      "expiresAt": 300,
+      "counter": 100,
+      "flags": 1,
+      "expectedAadHex": "e1378e65f4303ae20ec1cf0e36a259ca033ece495536cb0ab6c241349edcd96f"
+    },
+    {
+      "name": "vcsec_maxcounter",
+      "domain": 2,
+      "verifierNameHex": "746573745f7665726966696572",
+      "epochHex": "ffffffffffffffffffffffffffffffff",
+      "expiresAt": 1,
+      "counter": 4294967294,
+      "flags": 0,
+      "expectedAadHex": "7f441d964fa9cf2f7091d3bbde9579c6d150fa70d6773f01993691acff99b96d"
+    }
+  ]
+}

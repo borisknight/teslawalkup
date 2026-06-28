@@ -1,0 +1,68 @@
+{
+  "description": "Transcribed from internal/authentication/window_test.go TestSlidingWindow",
+  "cases": [
+    {
+      "name": "advance_by_one",
+      "counter": 100,
+      "window": 33,
+      "newCounter": 101,
+      "expectedCounter": 101,
+      "expectedWindow": 67,
+      "expectedOk": true
+    },
+    {
+      "name": "advance_with_skip",
+      "counter": 100,
+      "window": 33,
+      "newCounter": 103,
+      "expectedCounter": 103,
+      "expectedWindow": 268,
+      "expectedOk": true
+    },
+    {
+      "name": "advance_beyond_window",
+      "counter": 100,
+      "window": 33,
+      "newCounter": 500,
+      "expectedCounter": 500,
+      "expectedWindow": 0,
+      "expectedOk": true
+    },
+    {
+      "name": "late_fill_within_window",
+      "counter": 100,
+      "window": 33,
+      "newCounter": 98,
+      "expectedCounter": 100,
+      "expectedWindow": 35,
+      "expectedOk": true
+    },
+    {
+      "name": "replay_within_window_rejected",
+      "counter": 100,
+      "window": 33,
+      "newCounter": 99,
+      "expectedCounter": 100,
+      "expectedWindow": 33,
+      "expectedOk": false
+    },
+    {
+      "name": "below_window_rejected",
+      "counter": 100,
+      "window": 33,
+      "newCounter": 3,
+      "expectedCounter": 100,
+      "expectedWindow": 33,
+      "expectedOk": false
+    },
+    {
+      "name": "equal_counter_rejected",
+      "counter": 100,
+      "window": 33,
+      "newCounter": 100,
+      "expectedCounter": 100,
+      "expectedWindow": 33,
+      "expectedOk": false
+    }
+  ]
+}

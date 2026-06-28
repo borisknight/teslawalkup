@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleExecutable</key>
+	<string>$(EXECUTABLE_NAME)</string>
+	<key>CFBundleIdentifier</key>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleName</key>
+	<string>$(PRODUCT_NAME)</string>
+	<key>CFBundlePackageType</key>
+	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
+	<key>CFBundleShortVersionString</key>
+	<string>$(MARKETING_VERSION)</string>
+	<key>CFBundleVersion</key>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<key>LSRequiresIPhoneOS</key>
+	<true/>
+	<key>UILaunchScreen</key>
+	<dict/>
+	<key>UIApplicationSupportsIndirectInputEvents</key>
+	<true/>
+	<!-- Lets iOS relaunch us in the background for BLE connection events. -->
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>bluetooth-central</string>
+		<string>location</string>
+	</array>
+	<!-- Required whenever the app uses CoreBluetooth. -->
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>TeslaWalkUp talks to your Tesla over Bluetooth to unlatch the driver door as you walk up to it.</string>
+	<!-- A low-power background location session keeps the app alive so it can
+	     keep measuring your distance to the car while backgrounded. -->
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>TeslaWalkUp uses background location to stay active so it can open your door as you approach. Your location is never stored or sent anywhere.</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>TeslaWalkUp needs Always location so it can keep watching for your car while the app is in your pocket. Your location is never stored or sent anywhere.</string>
+</dict>
+</plist>

@@ -1,0 +1,32 @@
+{
+  "description": "AES-GCM-128 round-trip with fixed session key and fixed nonce",
+  "cases": [
+    {
+      "name": "empty_plaintext_empty_aad",
+      "sessionKeyHex": "00112233445566778899aabbccddeeff",
+      "nonceHex": "000102030405060708090a0b",
+      "plaintextHex": "",
+      "aadHex": "",
+      "ciphertextHex": "",
+      "tagHex": "8f938f40f877e0c4af37d0fe9af03305"
+    },
+    {
+      "name": "single_byte_plaintext_short_aad",
+      "sessionKeyHex": "00112233445566778899aabbccddeeff",
+      "nonceHex": "ffeeddccbbaa998877665544",
+      "plaintextHex": "01",
+      "aadHex": "deadbeef",
+      "ciphertextHex": "54",
+      "tagHex": "64ac6bf18546f77d0e58cd1126519e29"
+    },
+    {
+      "name": "text_plaintext_long_aad",
+      "sessionKeyHex": "00112233445566778899aabbccddeeff",
+      "nonceHex": "aaaaaaaaaaaaaaaaaaaaaaaa",
+      "plaintextHex": "68656c6c6f207465736c61",
+      "aadHex": "00112233445566778899aabbccddeeff112233445566778899aabbccddeeff00",
+      "ciphertextHex": "d1ca2cac0233d5d9cdba47",
+      "tagHex": "3027a93881bcf7506aa1c05cd300c201"
+    }
+  ]
+}

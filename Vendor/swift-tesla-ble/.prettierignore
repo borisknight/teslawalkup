@@ -1,0 +1,5 @@
+.build/
+Assets.xcassets/
+Fixtures/
+Generated/
+Vendor/

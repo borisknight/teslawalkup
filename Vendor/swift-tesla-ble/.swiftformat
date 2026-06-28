@@ -1,0 +1,8 @@
+--disable redundantSendable
+
+--exclude **/*.pb.swift
+--exclude Vendor
+
+--ifdef outdent
+
+--test-case-name-format standard-identifiers

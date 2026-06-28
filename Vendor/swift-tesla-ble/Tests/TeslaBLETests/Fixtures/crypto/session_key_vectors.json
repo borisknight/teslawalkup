@@ -1,0 +1,33 @@
+{
+  "description": "Session key derivation: ECDH shared-X (32B BE) -\u003e SHA1 -\u003e first 16B",
+  "cases": [
+    {
+      "name": "vector_1",
+      "localScalarHex": "01",
+      "peerPublicHex": "047cf27b188d034f7e8a52380304b51ac3c08969e277f21b35a60b48fc4766997807775510db8ed040293d9ac69f7430dbba7dade63ce982299e04b79d227873d1",
+      "sharedXHex": "7cf27b188d034f7e8a52380304b51ac3c08969e277f21b35a60b48fc47669978",
+      "sessionKeyHex": "b59d61fedc3b7a1ee22fde1780a59522"
+    },
+    {
+      "name": "vector_2",
+      "localScalarHex": "deadbeef",
+      "peerPublicHex": "04784113da68c4e322e5273f6813c260ab1ca94664f08bcd0c6963852155a4f7b2f251d29e7e03329ec64dd31c06d89950a50c4a27deb0898b71b4916c43b91b76",
+      "sharedXHex": "8c92683d9329cad7ae50b59afcfaf4c2e4c428c3208a31daa32d7af92f3b3151",
+      "sessionKeyHex": "d7db5093d55a3e1cc30f459fd70d63a3"
+    },
+    {
+      "name": "vector_3",
+      "localScalarHex": "7fffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+      "peerPublicHex": "0476a94d138a6b41858b821c629836315fcd28392eff6ca038a5eb4787e1277c6ea985fe61341f260e6cb0a1b5e11e87208599a0040fc78baa0e9ddd724b8c5110",
+      "sharedXHex": "8bb06675d8cb22d03db835968109bc9c00971ee71ab3c97ee3a3e442e4ef5da1",
+      "sessionKeyHex": "470dbcc97eb7ad63b69aa41aa895e99d"
+    },
+    {
+      "name": "vector_4",
+      "localScalarHex": "42",
+      "peerPublicHex": "0435a4be82a7fa78707d129ded7452922c40f9c37f1d2031cef901def15259456c0dca54c5dd91f805131131bf50bb1327795fae9199393f6f82cedfddfc247faa",
+      "sharedXHex": "317b25d4568c894d724e70df61849fa3f695575a1c05b80e90d96e1b4d8f8e50",
+      "sessionKeyHex": "3b9709ac42eafa0a0124eefe9800e89c"
+    }
+  ]
+}

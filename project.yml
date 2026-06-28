@@ -1,0 +1,42 @@
+# XcodeGen spec. Generate the Xcode project with:  xcodegen generate
+# (brew install xcodegen). Then open TeslaWalkUp.xcodeproj.
+name: TeslaWalkUp
+options:
+  bundleIdPrefix: com.knight
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+
+packages:
+  TeslaBLE:
+    path: Vendor/swift-tesla-ble
+
+targets:
+  TeslaWalkUp:
+    type: application
+    platform: iOS
+    sources:
+      - path: App
+    dependencies:
+      - package: TeslaBLE
+        product: TeslaBLE
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.knight.teslawalkup
+        PRODUCT_NAME: TeslaWalkUp
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        # Swift 5 language mode for the app target: CoreBluetooth types
+        # (CBPeripheral, delegate callbacks) aren't Sendable, so Swift 6's
+        # region-based data-race checker rejects passing them across the BLE
+        # queue / actor / MainActor. The state is already serialized on one
+        # queue. The TeslaBLE package stays on Swift 6.2 (its own Package.swift).
+        SWIFT_VERSION: "5.0"
+        TARGETED_DEVICE_FAMILY: "1"
+        GENERATE_INFOPLIST_FILE: NO
+        INFOPLIST_FILE: App/Info.plist
+        # Set your own Apple Developer Team: uncomment and fill in your 10-char
+        # Team ID, or just pick your team in Xcode → Signing & Capabilities after
+        # running `xcodegen generate`. A free Apple ID works (7-day re-sign).
+        # DEVELOPMENT_TEAM: XXXXXXXXXX
+        CODE_SIGN_STYLE: Automatic

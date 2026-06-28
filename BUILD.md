@@ -1,5 +1,12 @@
 # Building & Deploying TeslaWalkUp (CLI)
 
+**TL;DR — just run the script** (it does everything below, signing gotcha included):
+
+```bash
+./deploy.sh            # build -> install -> launch on the connected iPhone
+./deploy.sh <UDID>     # target a specific device
+```
+
 This app builds, installs, and launches onto a physical iPhone entirely from the
 command line — no clicking around in Xcode. Two prerequisites:
 

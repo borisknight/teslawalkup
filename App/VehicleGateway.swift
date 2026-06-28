@@ -174,12 +174,6 @@ final class VehicleGateway {
         let deadline = Date().addingTimeInterval(Double(holdMs) / 1000.0)
         var pulses = 0
         repeat {
-            // Stop as soon as you've actually pulled the door open/ajar.
-            if pulses > 0, await doorIsOpen(client) {
-                DiskLog.log("DOOR open — stopping after \(pulses) pulses")
-                lastEvent = "Door open ✔︎ (\(pulses) pulses) \(Self.now())"
-                return
-            }
             try? await client.send(.security(.openDriverDoor))
             pulses += 1
             DiskLog.log("UNLATCH pulse #\(pulses)")
@@ -188,20 +182,6 @@ final class VehicleGateway {
         } while Date() < deadline
         DiskLog.log("WINDOW ended (\(pulses) pulses)")
         lastEvent = "Window ended (\(pulses) unlatches) \(Self.now())"
-    }
-
-    /// True once the driver door has actually moved off the latch — so we can
-    /// stop pulsing the instant you pull it open.
-    private func doorIsOpen(_ client: TeslaVehicleClient) async -> Bool {
-        guard case let .bodyControllerState(s)? = try? await client.query(.bodyControllerState) else {
-            return false
-        }
-        switch s.closureStatuses.frontDriverDoor {
-        case .closurestateOpen, .closurestateAjar, .closurestateOpening:
-            return true
-        default:
-            return false
-        }
     }
 
     /// Spacing between unlatch pulses — enough for the latch's full

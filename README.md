@@ -1,5 +1,9 @@
 # TeslaWalkUp
 
+<p align="center">
+  <img src="docs/teslawalkup.png" alt="TeslaWalkUp" width="520">
+</p>
+
 **Walk up to your locked Tesla with nothing but your iPhone in your pocket — the driver door unlatches as you arrive. No key fob, no card, no beacon, nothing added to the car, and you never touch the phone.**
 
 Your iPhone *is* the key: it speaks Tesla's signed BLE protocol as a paired key and gates on how close you are to the car. Confirmed working **backgrounded, screen-locked, on a Model Y running iOS 26.**
